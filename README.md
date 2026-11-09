@@ -27,25 +27,12 @@ uvicorn app.main:app --port 8000
 
 Open http://localhost:8000.
 
-Keep the same `TV_AUDIT_KEY` between runs: it is the key that makes the audit chain verifiable.
-If it changes, old audit rows fail verification.
-
-### Demo accounts (password = `TV_SEED_PASSWORD`, default `ChangeMe-Demo-2026!`)
-
-| Role   | Username | What to try |
-|--------|----------|-------------|
-| admin  | `admin`  | Activity tab, user management. Cannot open any document. |
-| owner  | `alice`  | Owns 2 docs; shared "Salary letter" with bob. Share / revoke. |
-| owner  | `carol`  | Owns "Customer contract". Alice and Bob cannot see it. |
-| viewer | `bob`    | Sees only the salary letter. Cannot upload. |
-
-Change the demo password on any public deployment.
 
 ## Tests
 
 ```bash
-python -m pytest -q                  # 86 tests, about 35 s (most of it is password hashing)
-python scripts/mutation_check.py     # removes each authorisation check in turn; every mutant must be KILLED
+python -m pytest -q                  
+python scripts/mutation_check.py     
 ```
 
 `mutation_check.py` does what a reviewer might do: takes one `require(...)` call out of
