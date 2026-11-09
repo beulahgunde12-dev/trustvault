@@ -6,11 +6,11 @@ import pytest
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.environ.setdefault("TV_AUDIT_KEY", "test-key")
 
-from fastapi.testclient import TestClient  # noqa: E402
+from fastapi.testclient import TestClient  
 
-from app import db as dbm  # noqa: E402
-from app.config import settings  # noqa: E402
-from app.main import app  # noqa: E402
+from app import db as dbm  
+from app.config import settings  
+from app.main import app  
 
 PW = "correct-horse-battery"
 USERS = [("admin", "admin"), ("alice", "owner"), ("carol", "owner"),
