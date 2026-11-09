@@ -1,4 +1,3 @@
-"""TrustVault API. See API.md for who may call what."""
 import hashlib
 import re
 import uuid
@@ -40,7 +39,6 @@ async def security_headers(request: Request, call_next):
     return resp
 
 
-# --------------------------------------------------------------------------- auth
 def current_user(request: Request, db=Depends(get_db)) -> dict:
     h = request.headers.get("authorization", "")
     if not h.lower().startswith("bearer "):
@@ -129,7 +127,6 @@ def directory(user=Depends(roles("owner")), db=Depends(get_db)):
     return [dict(r) for r in rows]
 
 
-# ----------------------------------------------------------------- documents
 async def _read_upload(file: UploadFile) -> bytes:
     data = await file.read(settings.max_upload_bytes + 1)
     if len(data) > settings.max_upload_bytes:
@@ -413,7 +410,6 @@ def document_history(doc_id: str, request: Request, limit: int = Query(100, ge=1
         return [dict(r) for r in rows]
 
 
-# ---------------------------------------------------------------------- admin
 @app.get("/api/admin/users")
 def admin_users(user=Depends(roles("admin")), db=Depends(get_db)):
     return [dict(r) for r in db.execute(

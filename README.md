@@ -52,20 +52,9 @@ On Render / Fly / Railway: deploy the Dockerfile, mount a persistent disk at `/d
 platform proxy overwrites `X-Forwarded-For`. With `TV_ENV=prod` (set in the Dockerfile) the app
 refuses to start without a real `TV_AUDIT_KEY`. Single instance only (SQLite + local disk).
 
-## Configuration
 
-| Variable | Default | Meaning |
-|----------|---------|---------|
-| `TV_ENV` | `dev` | `prod` refuses to start with the dev audit key |
-| `TV_DB` | `data/trustvault.db` | SQLite file |
-| `TV_STORAGE` | `data/files` | Uploaded files (never served statically) |
-| `TV_AUDIT_KEY` | dev value | HMAC key for the audit chain; keep it out of DB backups |
-| `TV_SEED_PASSWORD` | `ChangeMe-Demo-2026!` | Password for seeded demo users |
-| `TV_MAX_UPLOAD` | 10485760 | Max upload bytes |
-| `TV_SESSION_HOURS` | 8 | Session lifetime |
-| `TV_TRUST_PROXY` | 0 | Trust `X-Forwarded-For` for audit IPs |
 
-## Folder layout
+
 
 ```
 trustvault/
